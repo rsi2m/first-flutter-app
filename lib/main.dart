@@ -4,9 +4,21 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var questionIndex = 0;
+
   void answerQuestion() {
-    print("Answer chosen!");
+    setState(() {
+      questionIndex = questionIndex + 1;
+    });
+    print(questionIndex);
   }
 
   var questions = [
@@ -23,15 +35,17 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text("Вопросик"),
+            Text(questions[questionIndex]),
             ElevatedButton(
               child: Text("Answer 1"),
               onPressed: () => answerQuestion(),
             ),
+            ElevatedButton(child: Text("Answer 2"), onPressed: answerQuestion),
             ElevatedButton(
-                child: Text("Answer 2"), onPressed: () => answerQuestion()),
-            ElevatedButton(
-                child: Text("Answer 3"), onPressed: () => answerQuestion()),
+                child: Text("Answer 3"),
+                onPressed: () {
+                  print("Чото выбрал");
+                }),
           ],
         ),
       ),
