@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,21 +8,21 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
-  var questions = [
+  var _questions = [
     "Какой цвет?",
     "Какое животное?",
   ];
@@ -31,16 +32,16 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Дарова, Серёга!"),
+          title: Question("Дарова, Серёга!"),
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Text(_questions[_questionIndex]),
             ElevatedButton(
               child: Text("Answer 1"),
-              onPressed: () => answerQuestion(),
+              onPressed: () => _answerQuestion(),
             ),
-            ElevatedButton(child: Text("Answer 2"), onPressed: answerQuestion),
+            ElevatedButton(child: Text("Answer 2"), onPressed: _answerQuestion),
             ElevatedButton(
                 child: Text("Answer 3"),
                 onPressed: () {
