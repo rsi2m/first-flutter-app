@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './answer.dart';
-import './question.dart';
+import 'quiz.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,9 +21,12 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
+    if (_questionIndex < _questions.length) {
+      print("We have more questions!");
+    }
   }
 
-  var _questions = [
+  final _questions = const [
     {
       'text': 'Какой цвет?',
       'answers': ['Черный', 'Белый', 'Зелёный', 'Желтый']
@@ -46,14 +48,11 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("Дарова, Серёга!"),
         ),
-        body: Column(
-          children: [
-            Question(_questions[_questionIndex]['text'].toString()),
-            ...(_questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) => Answer(answer, _answerQuestion))
-                .toList()
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(_questionIndex, _questions, _answerQuestion)
+            : Center(
+                child: Text("You did it!"),
+              ),
       ),
     );
   }
