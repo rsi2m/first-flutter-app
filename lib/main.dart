@@ -18,6 +18,13 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   var _totalScore = 0;
 
+  void restartQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _answerQuestion(int score) {
     _totalScore += score;
 
@@ -44,18 +51,18 @@ class _MyAppState extends State<MyApp> {
       'text': 'Какое животное?',
       'answers': [
         {'text': 'Кот', 'score': 10},
-        {'text': 'Пес', 'score': 10},
-        {'text': 'Гусь', 'score': 10},
-        {'text': 'Червь', 'score': 10},
+        {'text': 'Пес', 'score': 5},
+        {'text': 'Гусь', 'score': 3},
+        {'text': 'Червь', 'score': 0},
       ]
     },
     {
       'text': 'Какой город?',
       'answers': [
         {'text': 'СФ', 'score': 10},
-        {'text': 'Прага', 'score': 10},
-        {'text': 'Ору', 'score': 10},
-        {'text': 'Сомпа', 'score': 10}
+        {'text': 'Прага', 'score': 5},
+        {'text': 'Ору', 'score': 3},
+        {'text': 'Сомпа', 'score': 0}
       ]
     }
   ];
@@ -69,7 +76,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _questionIndex < _questions.length
             ? Quiz(_questionIndex, _questions, _answerQuestion)
-            : Result(_totalScore),
+            : Result(_totalScore, restartQuiz),
       ),
     );
   }
