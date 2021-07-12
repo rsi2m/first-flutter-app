@@ -16,8 +16,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
+
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -30,15 +33,30 @@ class _MyAppState extends State<MyApp> {
   final _questions = const [
     {
       'text': 'Какой цвет?',
-      'answers': ['Черный', 'Белый', 'Зелёный', 'Желтый']
+      'answers': [
+        {'text': 'Черный', 'score': 10},
+        {'text': 'Белый', 'score': 5},
+        {'text': 'Зелёный', 'score': 3},
+        {'text': 'Желтый', 'score': 2},
+      ]
     },
     {
       'text': 'Какое животное?',
-      'answers': ['Кот', 'Пес', 'Гусь', 'Червь']
+      'answers': [
+        {'text': 'Кот', 'score': 10},
+        {'text': 'Пес', 'score': 10},
+        {'text': 'Гусь', 'score': 10},
+        {'text': 'Червь', 'score': 10},
+      ]
     },
     {
       'text': 'Какой город?',
-      'answers': ['СФ', 'Прага', 'Ору', 'Сомпа']
+      'answers': [
+        {'text': 'СФ', 'score': 10},
+        {'text': 'Прага', 'score': 10},
+        {'text': 'Ору', 'score': 10},
+        {'text': 'Сомпа', 'score': 10}
+      ]
     }
   ];
 
@@ -51,7 +69,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _questionIndex < _questions.length
             ? Quiz(_questionIndex, _questions, _answerQuestion)
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
