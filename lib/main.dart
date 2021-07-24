@@ -13,6 +13,27 @@ class ExpenseApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Expenses App",
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+          title: TextStyle(
+            fontFamily: 'OpenSans',
+            fontWeight: FontWeight.bold,
+            fontSize: 18
+          )
+        ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -36,68 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: "tx1",
-      title: "New Shoes",
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "tx2",
-      title: "Groceries",
-      amount: 100,
-      date: DateTime.now(),
-    )
-  ];
+  final List<Transaction> _userTransactions = [];
 
   void _addNewTransaction(String title, double amount) {
     final newTransaction = Transaction(
