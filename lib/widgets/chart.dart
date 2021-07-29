@@ -28,7 +28,7 @@ class Chart extends StatelessWidget {
         day,
         amount,
       );
-    });
+    }).reversed.toList();
   }
 
   @override
