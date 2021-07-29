@@ -37,14 +37,21 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children: groupedTransactionValues.map((tx) {
-          return ChartBar(
-            tx.day,
-            tx.amount,
-            totalSpending == 0.0 ? 0.0 : tx.amount / totalSpending,
-          );
-        }).toList(),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((tx) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                tx.day,
+                tx.amount,
+                totalSpending == 0.0 ? 0.0 : tx.amount / totalSpending,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
