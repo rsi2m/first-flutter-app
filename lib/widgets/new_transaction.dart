@@ -1,3 +1,4 @@
+import 'package:first_flutter_project/widgets/adaptive_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -34,27 +35,24 @@ class _NewTransactionState extends State<NewTransaction> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2021),
       lastDate: DateTime(2022),
-    ).then((pickedDate) =>
-    {
-      setState(() {
-        _pickedDate = pickedDate;
-      })
-    });
+    ).then((pickedDate) => {
+          setState(() {
+            _pickedDate = pickedDate;
+          })
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Card(
+    return SingleChildScrollView(
+        child: Card(
       elevation: 5,
       child: Container(
         padding: EdgeInsets.only(
             top: 10,
             left: 10,
             right: 10,
-            bottom: MediaQuery
-                .of(context)
-                .viewInsets
-                .bottom + 10),
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -79,20 +77,10 @@ class _NewTransactionState extends State<NewTransaction> {
                     child: Text(
                       _pickedDate == null
                           ? "No Date Picked"
-                          : "Picked date: ${DateFormat.yMd().format(
-                          _pickedDate!)}",
+                          : "Picked date: ${DateFormat.yMd().format(_pickedDate!)}",
                     ),
                   ),
-                  TextButton(
-                    onPressed: _showDatePicker,
-                    child: Text("Pick Date",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme
-                              .of(context)
-                              .primaryColor,
-                        )),
-                  )
+                  AdaptiveButton("Pick date", _showDatePicker)
                 ],
               ),
             ),
@@ -100,15 +88,9 @@ class _NewTransactionState extends State<NewTransaction> {
               onPressed: _submitData,
               style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all(Theme
-                      .of(context)
-                      .primaryColor),
+                      MaterialStateProperty.all(Theme.of(context).primaryColor),
                   textStyle: MaterialStateProperty.all(TextStyle(
-                    color: Theme
-                        .of(context)
-                        .textTheme
-                        .button!
-                        .color,
+                    color: Theme.of(context).textTheme.button!.color,
                   ))),
               child: Text(
                 "Add Transaction",
