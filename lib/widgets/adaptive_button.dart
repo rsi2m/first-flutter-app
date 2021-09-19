@@ -18,9 +18,9 @@ class AdaptiveButton extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor,
                 )),
-            onPressed: () => handler)
+            onPressed: () => handler())
         : TextButton(
-            onPressed: () => handler,
+            onPressed: () => handler(),
             child: Text(text,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
